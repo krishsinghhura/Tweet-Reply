@@ -1,0 +1,45 @@
+{
+    "manifest_version": 3,
+    "name": "Tweet Reply",
+    "version": "1.0.0",
+    "description": "Injects a button to copy tweet text into the reply input area.",
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://x.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://x.com/*"
+            ],
+            "js": [
+                "src/modules/config.js",
+                "src/modules/logger.js",
+                "src/modules/dom-observer.js",
+                "src/modules/tweet-extractor.js",
+                "src/modules/ui-injector.js",
+                "src/main.js"
+            ],
+            "css": [
+                "src/styles/main.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "icons/icon16.png"
+            ],
+            "matches": [
+                "https://x.com/*"
+            ]
+        }
+    ]
+}
