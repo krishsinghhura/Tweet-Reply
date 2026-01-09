@@ -1,7 +1,5 @@
 # Tweet Reply
 
-![Extension Icon](./icons/icon128.png)
-
 ## Overview
 **Tweet Reply** is a Chrome Extension designed to streamline the workflow of replying on X (Twitter). It injects a helper button directly into the Tweet composer that, when clicked, automatically extracts the original tweet's text and pastes it into your reply box.
 
