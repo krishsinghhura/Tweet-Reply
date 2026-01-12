@@ -9,7 +9,7 @@ const Config = {
         textbox: '[role="textbox"]'//reply input box
     },
     textPatterns: {
-        replyIndicators: ["Post your reply"]
+        replyIndicators: ["Post your reply", "Replying to"]
     },
     settings: {
         domTraversalDepth: 6

@@ -69,10 +69,6 @@ class DOMObserver {
             if (this.config.textPatterns.replyIndicators.some(p => text.includes(p))) {
                 return true;
             }
-            //reply button
-            if (parent.querySelector(this.config.selectors.replyButton)) {
-                return true;
-            }
 
             parent = parent.parentElement;
         }
