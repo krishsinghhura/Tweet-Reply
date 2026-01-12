@@ -39,7 +39,14 @@ class DOMObserver {
 
     checkForReplyEditor(node) {
         const sel = this.config.selectors;
-        const toolbar = node.querySelector ? node.querySelector(sel.toolbar) : null;
+        let toolbar = null;
+
+        //if node is toolbar
+        if (node.matches && node.matches(sel.toolbar)) {
+            toolbar = node;
+        } else if (node.querySelector) {
+            toolbar = node.querySelector(sel.toolbar);
+        }
 
         if (toolbar) {
             if (this.isReplyContext(toolbar)) {
@@ -53,16 +60,23 @@ class DOMObserver {
 
         let parent = toolbar.parentElement;
 
-        //trying to find post your reply
+        //finding context
         for (let i = 0; i < this.config.settings.domTraversalDepth; i++) {
             if (!parent) break;
+
+            //"post your reply"
             const text = parent.innerText || "";
             if (this.config.textPatterns.replyIndicators.some(p => text.includes(p))) {
                 return true;
             }
+            //reply button
+            if (parent.querySelector(this.config.selectors.replyButton)) {
+                return true;
+            }
+
             parent = parent.parentElement;
         }
-        return true;
+        return false;
     }
 
     notifyCallbacks(element) {

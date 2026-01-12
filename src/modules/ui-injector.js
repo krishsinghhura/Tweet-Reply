@@ -9,7 +9,22 @@ class UIInjector {
         if (!toolbar) return;
 
         const sel = this.config.selectors;
-        const replyButton = toolbar.querySelector(sel.replyButton);
+        let replyButton = toolbar.querySelector(sel.replyButton);
+
+        //updated logic for normal reply field
+        //if not found inside the toolbar then search in ancestors 
+        if (!replyButton) {
+            let ancestor = toolbar.parentElement;
+            for (let i = 0; i < 5; i++) {
+                if (!ancestor) break;
+                const found = ancestor.querySelector(sel.replyButton);
+                if (found) {
+                    replyButton = found;
+                    break;
+                }
+                ancestor = ancestor.parentElement;
+            }
+        }
 
         if (!replyButton) {
             return;
